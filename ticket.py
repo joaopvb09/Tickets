@@ -31,7 +31,8 @@ class TicketingSystem:
         self.session = Session()
 
     def create_ticket(self, title, description, assignee=None, priority='Low'):
-        ticket = Ticket(title, description, assignee=assignee, priority=priority)
+        ticket = Ticket(title, description,
+                        assignee=assignee, priority=priority)
         self.session.add(ticket)
         self.session.commit()
 
@@ -55,7 +56,8 @@ class TicketingSystem:
 ticketing_system = TicketingSystem('ticketing_system.db')
 
 # Create a new ticket
-ticketing_system.create_ticket('Bug in the login page', 'Users unable to log in.')
+ticketing_system.create_ticket(
+    'Bug in the login page', 'Users unable to log in.')
 
 # Update ticket status
 ticketing_system.update_ticket_status('Bug in the login page', 'In Progress')
@@ -65,7 +67,8 @@ open_tickets = ticketing_system.get_open_tickets()
 
 # Print the open tickets
 for ticket in open_tickets:
-    print(f"Title: {ticket.title}\nDescription: {ticket.description}\nStatus: {ticket.status}\n")
+    print(
+        f"Title: {ticket.title}\nDescription: {ticket.description}\nStatus: {ticket.status}\n")
 
 # Close the ticketing system
 ticketing_system.close()
